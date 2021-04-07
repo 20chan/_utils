@@ -10,6 +10,8 @@ import {
   Col,
 } from '@geist-ui/react'
 import { TabItem } from './components/TabItem';
+import { UrlEncode } from './components/fn';
+import { UtilProps } from './components/fn/utilBase';
 
 function App() {
   const theme: any = {
@@ -24,11 +26,12 @@ function App() {
   };
 
   const z = () => <></>;
+  const y = (component: (p: UtilProps) => JSX.Element) => () => component({ live: true });
 
   const encodeTabs = () => {
     return (
       <TabItem items={[
-        buildTab('url', z),
+        buildTab('url', y(UrlEncode)),
         buildTab('baseurl', z),
         buildTab('html', z),
         buildTab('bin', z),
