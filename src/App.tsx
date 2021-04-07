@@ -9,6 +9,7 @@ import {
   Tabs,
   Col,
 } from '@geist-ui/react'
+import { TabItem } from './components/TabItem';
 
 function App() {
   const theme: any = {
@@ -16,6 +17,43 @@ function App() {
     "layout": {
       "pageWidth": "800pt",
     },
+  };
+
+  const buildTab = (label: string, fn_elem: () => JSX.Element) => {
+    return { label, fn_elem };
+  };
+
+  const z = () => <></>;
+
+  const encodeTabs = () => {
+    return (
+      <TabItem items={[
+        buildTab('url', z),
+        buildTab('baseurl', z),
+        buildTab('html', z),
+        buildTab('bin', z),
+        buildTab('oct', z),
+        buildTab('hex', z),
+      ]} />
+    );
+  };
+
+  const hashTabs = () => {
+    return (
+      <TabItem items={[
+        buildTab('md5', z),
+        buildTab('sha256', z),
+        buildTab('sha512', z),
+      ]} />
+    );
+  };
+
+  const cryptoTabs = () => {
+    return (
+      <TabItem items={[
+        buildTab('rotn', z),
+      ]} />
+    );
   };
 
   return (
@@ -28,36 +66,11 @@ function App() {
             <Text h2>utils.0chan.dev</Text>
           </Row>
           <Row justify='center'>
-            <Tabs initialValue='1' style={{ width: '50%' }}>
-              <Tabs.Item label='encode' value='1'>
-                <Tabs initialValue='1'>
-                  <Tabs.Item label='url' value='1'>
-                  </Tabs.Item>
-                  <Tabs.Item label='base64' value='2'>
-                  </Tabs.Item>
-                  <Tabs.Item label='html' value='3'>
-                  </Tabs.Item>
-                  <Tabs.Item label='hex' value='4'>
-                  </Tabs.Item>
-                </Tabs>
-              </Tabs.Item>
-              <Tabs.Item label='hash' value='2'>
-                <Tabs initialValue='1'>
-                  <Tabs.Item label='md5' value='1'>
-                  </Tabs.Item>
-                  <Tabs.Item label='sha256' value='2'>
-                  </Tabs.Item>
-                  <Tabs.Item label='sha512' value='3'>
-                  </Tabs.Item>
-                </Tabs>
-              </Tabs.Item>
-              <Tabs.Item label='crypto' value='3'>
-                <Tabs initialValue='1'>
-                  <Tabs.Item label='rotn' value='1'>
-                  </Tabs.Item>
-                </Tabs>
-              </Tabs.Item>
-            </Tabs>
+            <TabItem style={{ width: '50%' }} items={[
+              buildTab('encode', encodeTabs),
+              buildTab('hash', hashTabs),
+              buildTab('crypto', cryptoTabs),
+            ]} />
           </Row>
         </Col>
       </div>
