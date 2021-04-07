@@ -14,13 +14,6 @@ import { UrlEncode } from './components/fn';
 import { UtilProps } from './components/fn/utilBase';
 
 function App() {
-  const theme: any = {
-    "type": "Custom",
-    "layout": {
-      "pageWidth": "800pt",
-    },
-  };
-
   const buildTab = (label: string, fn_elem: () => JSX.Element) => {
     return { label, fn_elem };
   };
@@ -59,7 +52,7 @@ function App() {
   };
 
   return (
-    <GeistProvider themes={[theme]} themeType='custom'>
+    <GeistProvider themeType='dark'>
       <CssBaseline />
       <div>
         <Spacer y={1} />
