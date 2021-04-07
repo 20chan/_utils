@@ -32,7 +32,6 @@ function App() {
     return (
       <TabItem items={[
         buildTab('url', y(UrlEncode)),
-        buildTab('baseurl', z),
         buildTab('html', z),
         buildTab('bin', z),
         buildTab('oct', z),
