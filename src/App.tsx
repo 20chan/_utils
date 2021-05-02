@@ -10,7 +10,10 @@ import {
   Col,
 } from '@geist-ui/react'
 import { TabItem } from './components/TabItem';
-import { UrlEncode } from './components/fn';
+import {
+  Base64Encode,
+  UrlEncode,
+} from './components/fn';
 import { UtilProps } from './components/fn/utilBase';
 
 function App() {
@@ -18,17 +21,17 @@ function App() {
     return { label, fn_elem };
   };
 
-  const z = () => <></>;
-  const y = (component: (p: UtilProps) => JSX.Element) => () => component({ live: true });
+  const empty = () => <></>;
+  const build = (component: (p: UtilProps) => JSX.Element) => () => component({ live: true });
 
   const encodeTabs = () => {
     return (
       <TabItem items={[
-        buildTab('url', y(UrlEncode)),
-        buildTab('html', z),
-        buildTab('bin', z),
-        buildTab('oct', z),
-        buildTab('hex', z),
+        buildTab('url', build(UrlEncode)),
+        buildTab('base64', build(Base64Encode)),
+        buildTab('bin', empty),
+        buildTab('oct', empty),
+        buildTab('hex', empty),
       ]} />
     );
   };
@@ -36,9 +39,9 @@ function App() {
   const hashTabs = () => {
     return (
       <TabItem items={[
-        buildTab('md5', z),
-        buildTab('sha256', z),
-        buildTab('sha512', z),
+        buildTab('md5', empty),
+        buildTab('sha256', empty),
+        buildTab('sha512', empty),
       ]} />
     );
   };
@@ -46,7 +49,7 @@ function App() {
   const cryptoTabs = () => {
     return (
       <TabItem items={[
-        buildTab('rotn', z),
+        buildTab('rotn', empty),
       ]} />
     );
   };
